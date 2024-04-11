@@ -1,0 +1,64 @@
+#progress-steps {
+    display: flex;
+    justify-content: space-between; 
+    margin-bottom: 20px; 
+}
+
+.step {
+    flex: 1; 
+    text-align: center; 
+    padding: 10px;
+    background-color: #f0f0f0; 
+    border: 1px solid #ccc; 
+    
+}
+
+.step.active {
+    background-color: #194305; 
+    color: #fff; 
+    
+}
+.ets-navigation-buttons {
+    margin-top: 20px;
+}
+
+.ets-navigation-buttons .ets-button {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+span.ets-prevBtn {
+    display: none;
+}
+
+
+.ets-button {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #4CAF50; 
+    color: #4CAF50; 
+    background-color: transparent;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+
+.ets-button:hover {
+    background-color: #4CAF50;
+    color: white; 
+}
+
+
+.ets-button:active {
+    background-color: #45a049;
+    border-color: #45a049; 
+}
+
+body.pmpro-checkout div.post-wrap > h1.entry-title{
+    display: none;
+}
