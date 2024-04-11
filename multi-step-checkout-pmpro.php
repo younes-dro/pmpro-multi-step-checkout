@@ -87,8 +87,6 @@ class Multi_Step_Checkout_Pmpro {
 
 		register_activation_hook( __FILE__, array( $this, 'activation_check' ) );
 
-		add_action( 'admin_init', array( $this, 'check_environment' ) );
-
 		add_action( 'admin_init', array( $this, 'add_plugin_notices' ) );
 
 		add_action( 'admin_notices', array( $this, 'admin_notices' ), 15 );
@@ -144,40 +142,23 @@ class Multi_Step_Checkout_Pmpro {
 	}
 
 	/**
-	 * Checks the server environment and deactivates plugins as necessary.
+	 * Checks the pmpro and deactivates plugins as necessary.
 	 *
 	 * @since 1.0.0
 	 */
 	public function activation_check() {
 
-		if ( ! self::$dependencies->check_php_version() ) {
+		if ( ! self::$dependencies->check_pmpro_version() ) {
 
 			$this->deactivate_plugin();
 
-			wp_die( $this->plugin_name . esc_html__( ' could not be activated. ', 'multi-step-checkout-pmpro' ) . self::$dependencies->get_php_notice() );
+			// wp_die( $this->plugin_name . esc_html__( ' could not be activated. ', 'multi-step-checkout-pmpro' ) . self::$dependencies->get_pmpro_notice() );
 
 		}
 
 		// Maybe save some options value on activate the add-on
 	}
 
-	/**
-	 * Checks the environment on loading WordPress, just in case the environment changes after activation.
-	 *
-	 * @since 1.0.0
-	 */
-	public function check_environment() {
-
-		if ( ! self::$dependencies->check_php_version() && is_plugin_active( plugin_basename( __FILE__ ) ) ) {
-
-			$this->deactivate_plugin();
-			$this->add_admin_notice(
-				'bad_environment',
-				'error',
-				$this->plugin_name . esc_html__( ' has been deactivated. ', 'multi-step-checkout-pmpro' ) . self::$dependencies->get_php_notice()
-			);
-		}
-	}
 
 	/**
 	 * Deactivate the plugin
