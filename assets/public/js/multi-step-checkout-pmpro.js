@@ -63,7 +63,14 @@
                 currentStep.removeClass("active");
                 prevStep.addClass("active");
                 $(".pmpro_checkout").hide();
-                $("#" + prevStep.data("step")).show();
+                //Added check her if we are in Your infirmation Tab
+                if ( prevStep.data("step") === 'pmpro_checkout_box-custom-fields' ){
+                    $("[id^='pmpro_checkout_box-']").show();
+                }else{
+                    $("#" + prevStep.data("step")).show();
+                }
+                
+
                 toggleSubmitButton();
             }
             if ($("#progress-steps .step:first-child").hasClass('active')) {
