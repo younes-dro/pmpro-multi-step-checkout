@@ -82,18 +82,51 @@
         function validateFields(stepId) {
             var allFields = $(stepId).find(":input.pmpro_required");
             var allFieldsFilled = true;
-            
+            var radioGroups = {};
+        
             allFields.each(function() {
-                if ($(this).val() === "") {
-                    allFieldsFilled = false;
-                    $(this).addClass('input-error');
+                if ($(this).attr('type') === 'checkbox') {
+        
+                    if (!$(this).prop('checked')) {
+                        allFieldsFilled = false;
+                        $(this).addClass('error');
+                    } else {
+                        $(this).removeClass('error');
+                    }
+                } else if ($(this).attr('type') === 'radio') {
+                    
+                    var groupName = $(this).attr('name');
+                    if (!radioGroups[groupName]) {
+                        radioGroups[groupName] = false; 
+                    }
+                    if ($(this).prop('checked')) {
+                        radioGroups[groupName] = true; 
+                    }
                 } else {
-                    $(this).removeClass('input-error');
+                    
+                    if ($(this).val() === "") {
+                        allFieldsFilled = false;
+                        $(this).addClass('error');
+                    } else {
+                        $(this).removeClass('error');
+                    }
                 }
             });
-            
+        
+        
+            $.each(radioGroups, function(groupName, groupFilled) {
+                if (!groupFilled) {
+                    allFieldsFilled = false;
+                    $('[name="' + groupName + '"]').addClass('error');
+                } else {
+                    $('[name="' + groupName + '"]').removeClass('error');
+                }
+            });
+        
             return allFieldsFilled;
         }
+        
+        
         
 
     }); // DOM Ready
