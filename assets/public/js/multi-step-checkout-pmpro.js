@@ -80,16 +80,21 @@
         });
 
         function validateFields(stepId) {
-            var allFields = $(stepId).find(":input").not(":checkbox[name='kt_supports']").not(":checkbox[name='kt_article_links']").not(":input[name='ets_middle_name']").not(":input[name='ets_website_url']").not(":input[name='ets_telehealth_platforms']");
+            var allFields = $(stepId).find(":input.pmpro_required");
             var allFieldsFilled = true;
+            
             allFields.each(function() {
                 if ($(this).val() === "") {
                     allFieldsFilled = false;
-                    return false;
+                    $(this).addClass('input-error');
+                } else {
+                    $(this).removeClass('input-error');
                 }
             });
+            
             return allFieldsFilled;
         }
+        
 
     }); // DOM Ready
 

@@ -62,3 +62,6 @@ span.ets-prevBtn {
 body.pmpro-checkout div.post-wrap > h1.entry-title{
     display: none;
 }
+.input-error {
+    border: 1px solid red;
+}
