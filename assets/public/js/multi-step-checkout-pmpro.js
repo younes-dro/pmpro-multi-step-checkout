@@ -5,6 +5,12 @@
         $(".pmpro_checkout").hide();
         // $(".pmpro_submit").hide();
         $("[id^='pmpro_checkout_box-']").show();
+
+        var lastCustomFileds = $("[id^='pmpro_checkout_box-']").last();
+
+        $('#ets-navigation-buttons-wrapper').children().clone(true).appendTo(lastCustomFileds);
+		$('#ets-navigation-buttons-wrapper').children().clone(true).appendTo('#pmpro_user_fields');
+		$('#ets-navigation-buttons-wrapper').children().clone(true).appendTo('#pmpro_billing_address_fields');
         
         function isLastStep() {
             return $('.step.active').next('.step').length === 0;
