@@ -155,8 +155,12 @@ class Multi_Step_Checkout_Pmpro {
 			// wp_die( $this->plugin_name . esc_html__( ' could not be activated. ', 'multi-step-checkout-pmpro' ) . self::$dependencies->get_pmpro_notice() );
 
 		}
+		update_option( 'ets_msc_step_bg_color', '#f0f0f0' );
+		update_option( 'ets_msc_step_border_color', '#cccccc' );
+		update_option( 'ets_msc_step_active_bg_color', '#194305' );
+		update_option( 'ets_msc_step_active_color', '#ffffff' );
 
-		// Maybe save some options value on activate the add-on
+		// update_option( 'ets_msc_prevBtn_border')
 	}
 
 
